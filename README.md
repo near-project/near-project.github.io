@@ -1,8 +1,10 @@
-# NeAR: Coupled Neural Asset–Renderer Stack
+<div align="center">
+  <img src="https://near-project.github.io/near.github.io/static/logo.svg" alt="NeAR Logo" width="350"/>
+</div>
 
 <div align="center">
   <video width="100%" autoplay loop muted playsinline>
-    <source src="https://near-project.github.io/near.github.io/static/teaser/video.mp4" type="video/mp4">
+    <source src="https://near-project.github.io/static/teaser/video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -24,6 +26,6 @@ Neural asset authoring and neural rendering have emerged as largely disjoint thr
 - **Real-time Rendering:** Fast feed-forward Rendering without per-object optimization
 - **High Quality:** Surpasses state-of-the-art baselines in quantitative metrics and perceptual quality
 
-> For a detailed visualization, see the [project page](https://near-project.github.io/near.github.io/)
+> For a detailed visualization, see the [project page](https://near-project.github.io)
 
 We welcome your attention, use, and feedback!

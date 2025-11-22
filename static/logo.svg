@@ -1,0 +1,45 @@
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="globalGrad" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#667eea" />
+      <stop offset="100%" stop-color="#764ba2" />
+    </linearGradient>
+    <!-- Gradient for the rendered face (slightly lighter to stand out) -->
+    <linearGradient id="faceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8e9eeb" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#9b6bce" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Grouping everything to apply coordinate system for gradient if needed, 
+       but SVG text fill usually needs explicit gradient reference. 
+       Here we use a global gradient spanning the whole width. -->
+  
+  <!-- Text: Ne -->
+  <text x="20" y="85" font-family="Arial, sans-serif" font-weight="900" font-size="90" fill="url(#globalGrad)">Ne</text>
+  
+  <!-- Stylized A: Asset to Renderer Transformation -->
+  <g transform="translate(180, 85)">
+    <!-- Left Half: Wireframe (Asset/Geometry) -->
+    <path d="M 0 -72 L -36 0 L 0 -20 Z" fill="none" stroke="url(#globalGrad)" stroke-width="3" stroke-linejoin="round" />
+    <path d="M 0 -72 L 0 -20 L -36 0" fill="none" stroke="url(#globalGrad)" stroke-width="3" stroke-linejoin="round" stroke-dasharray="4,3" opacity="0.8"/>
+    
+    <!-- Neural Nodes -->
+    <circle cx="-36" cy="0" r="4" fill="white" stroke="url(#globalGrad)" stroke-width="2"/>
+    <circle cx="0" cy="-20" r="4" fill="white" stroke="url(#globalGrad)" stroke-width="2"/>
+    <circle cx="-18" cy="-36" r="3" fill="url(#globalGrad)" />
+    
+    <!-- Right Half: Shaded Surface (Rendering) -->
+    <!-- Using a slightly different gradient or opacity to distinguish from wireframe but keep theme -->
+    <path d="M 0 -72 L 36 0 L 0 -20 Z" fill="url(#faceGrad)" stroke="none" />
+    
+    <!-- Light/Shine effect -->
+    <path d="M 0 -72 L 36 0" stroke="white" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+    
+    <!-- Top Node -->
+    <circle cx="0" cy="-72" r="5" fill="url(#globalGrad)" stroke="white" stroke-width="2"/>
+  </g>
+
+  <!-- Text: R -->
+  <text x="225" y="85" font-family="Arial, sans-serif" font-weight="900" font-size="90" fill="url(#globalGrad)">R</text>
+</svg>
