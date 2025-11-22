@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><u>Ne</u><u>AR</u>: Coupled Neural Asset–Renderer Stack</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans&family=Castoro&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+
+  <style>
+  /* Additional inline styles for enhanced aesthetics */
+  .content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+  }
+  
+  .subtitle {
+    color: #718096;
+    font-weight: 400;
+  }
+  
+  /* Enhanced video containers */
+  .video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+  }
+  
+  .video-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .video-container:hover::before {
+    opacity: 1;
+  }
+  
+  .video-container:hover {
+    box-shadow: 0 30px 100px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(102, 126, 234, 0.2);
+    transform: translateY(-6px) scale(1.005);
+  }
+  
+  .video-container video {
+    position: relative;
+    z-index: 0;
+  }
+  
+  /* Improved image containers */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+  }
+  
+  /* Better spacing for sections */
+  #teaser {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);
+  }
+  
+  /* Enhanced button icons */
+  .link-block .icon {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .link-block a:hover .icon {
+    transform: scale(1.1);
+  }
+  
+  /* Smooth fade-in for content */
+  .content {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Enhanced author links */
+  .publication-authors a {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Glow effect for active sections */
+  .section:target {
+    animation: highlight 1s ease-out;
+  }
+  
+  @keyframes highlight {
+    0% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: rgba(102, 126, 234, 0.05);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+  
+  /* Improved image loading */
+  img {
+    opacity: 0;
+    animation: imageFadeIn 0.6s ease-out forwards;
+  }
+  
+  @keyframes imageFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Subtle parallax effect */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero {
+      transform: translateZ(0);
+    }
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: 'Inter', sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+
+  tr:hover {
+    background-color: #f1f3f5;
+    transition: background-color 0.2s ease;
+  }
+
+  caption {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+</style>
+
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title" data-text="<u>Ne</u><u>AR</u>: Coupled Neural Asset–Renderer Stack"><u>Ne</u><u>AR</u>: Coupled Neural Asset–Renderer Stack</h1>
+            <div class="is-size-4 publication-authors">
+              <span class="author-block">
+              </span>
+            </div> 
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=5FBYzP8AAAAJ&hl=en" target="_blank">Hong Li</a><sup>1,2,*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/hugoycj" target="_blank">Chongjie Ye</a><sup>3,*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/houyuanchen111" target="_blank">Houyuan Chen</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com.hk/citations?user=v0iwkScAAAAJ&hl=en&oi=sra" target="_blank">Weiqing Xiao</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=YDpHqP0AAAAJ&hl=en" target="_blank">Ziyang Yan</a><sup>5</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=TLN6QGMAAAAJ&hl=en" target="_blank">Lixing Xiao</a><sup>6</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://frozenburning.github.io/" target="_blank">Zhaoxi Chen</a><sup>7</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://jeffreyxiang.github.io/" target="_blank">Jianfeng Xiang</a><sup>8</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://daniellli.github.io/" target="_blank">Shaocong Xu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=d4Dg1J4AAAAJ&hl=en" target="_blank">Xuhui Liu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://yikaiw.github.io/" target="_blank">Yikai Wang</a><sup>9</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=ImJz6MsAAAAJ&hl=en" target="_blank">Baochang Zhang</a><sup>1,§</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://gaplab.cuhk.edu.cn/pages/people" target="_blank">Xiaoguang Han</a><sup>10</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a><sup>11</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>12,§</sup>
+              </span>
+            </div>
+  
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal Contribution</span>
+              <!-- <span class="author-block"><sup>†</sup>Project Leader</span> -->
+              <span class="author-block"><sup>§</sup>Corresponding Author</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>BAAI</span>
+              <span class="author-block"><sup>2</sup>BUAA</span>
+              <span class="author-block"><sup>3</sup>FNii, CUHKSZ</span>
+              <span class="author-block"><sup>4</sup>NJU</span>
+              <span class="author-block"><sup>5</sup>UniTn</span>
+              <span class="author-block"><sup>6</sup>ZJU</span>
+              <span class="author-block"><sup>7</sup>NTU</span>
+              <span class="author-block"><sup>8</sup>THU</span>
+              <span class="author-block"><sup>9</sup>BNU</span>
+              <span class="author-block"><sup>10</sup>CUHKSZ</span>
+              <span class="author-block"><sup>11</sup>MSRA</span>
+              <span class="author-block"><sup>12</sup>AIR, THU</span>
+            </div>
+  
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="./index.html" id="active-button" class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fas fa-home"></i>
+                    </span>
+                    <span>Main Page</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fab fa-hugging-face"></i>
+                    </span>
+                    <span>Hugging Face</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fas fa-code"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="section" id="teaser">
+    <div class="container is-max-desktop">
+      <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
+        <div class="column is-full">
+          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 16px;">
+            <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/teaser/video.mp4"></video>
+          </div>
+        </div>
+      </div>
+      <p class="subtitle is-6 has-text-justified" style="max-width: 820px; margin: 2rem auto 0; line-height: 1.8; color: #4a5568; font-size: 1.05rem;">
+      <strong style="color: #2d3748; font-weight: 600;">Relightable 3D generative rendering results.</strong> 
+      Columns from left to right depict the target illumination, the casually lit input image, Blender-rendered results from Trellis 3D, Hunyuan 3D-2.1 (with PBR materials), our method's estimated multi-view PBR materials back-projected onto the given mesh, our neural rendering results, and ground truth. The final two columns keep illumination fixed while varying the camera pose. Compared with prior approaches, our method yields more faithful relighting, particularly in preserving rendering accuracy and enforcing cross-view illumination consistency.
+      </p>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="section" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.03) 100%);">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="content has-text-justified" style="max-width: 900px; margin: 0 auto;">
+        <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1); border-left: 4px solid #667eea;">
+          <p style="font-size: 1.1rem; line-height: 1.9; color: #4a5568; margin: 0;">
+            Neural asset authoring and neural rendering have emerged as largely disjoint threads: one generates digital assets using neural networks for traditional graphics pipelines, while the other develops neural renderers that map conventional assets to images. However, the joint design of the asset representation and renderer remains largely unexplored. We argue that coupling them can unlock an end-to-end learnable graphics stack with benefits in fidelity, consistency, and efficiency. In this paper, we explore this possibility with <strong><u>Ne</u><u>AR</u></strong>: a Coupled Neural Asset–Renderer Stack. On the <strong>asset</strong> side, we build on Trellis-style Structured 3D Latents and introduce a lighting-homogenized neural asset: from a casually lit input, a rectified-flow backbone predicts a Lighting-Homogenized SLAT that encodes geometry and intrinsic material cues in a compact, view-agnostic latent. On the <strong>renderer</strong> side, we design a lighting-aware neural renderer that uses this neural asset, along with explicit view embeddings and HDR environment maps, to produce lighting-aware renderings in realtime. We validate <strong><u>Ne</u><u>AR</u></strong> on four tasks: (1) G-buffer–based forward rendering, (2) random-lit single-image reconstruction, (3) unknown-lit single-image relighting, and (4) novel-view relighting, where our coupled stack surpasses state-of-the-art baselines in quantitative metrics and perceptual quality. We hope this coupled asset-renderer perspective inspires new graphics stacks that view neural assets and renderers as co-designed components instead of independent ones.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Overview</h2>
+
+      <div class="content has-text-justified">
+        <div style="text-align: center; margin: 40px 0;">
+          <label class="label" style="display: inline-block; max-width: 100%; vertical-align: middle; margin: 0; padding: 0;">
+            <img src="./static/methods/pipeline.png" border="0" class="zoom" style="width: 100%; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15); border-radius: 12px; transition: all 0.4s ease;">
+          </label>
+        </div>
+        <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.9; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+          <strong style="color: #2d3748; font-weight: 600;">Pipeline of <u>Ne</u><u>AR</u>.</strong> 
+          <em>Top: Light Homogenization</em> extracts a Lighting-Homogenized Structured 3D Latent (<strong>LH-SLAT</strong>) from a casually lit input image. The right side shows the pipeline for generating LH-SLAT from a single image: we first recover a shaded SLAT, then perform illumination homogenization in voxel space.
+          <em>Bottom: Relightable Neural 3DGS Synthesis</em> generates a relightable 3D Gaussian Splatting (<strong>3DGS</strong>) field conditioned on the LH-SLAT, target illumination, and target viewpoint. 
+          The decoded 3DGS encodes geometry, appearance, and light–material interactions, and is rendered into the final relit image.
+        </p>
+
+          <div style="display: flex; justify-content: center; width: 100%; max-width: 900px; margin: 0 auto;">
+            <img src="./static/methods/motivation.png" alt="Visualization of light normalization" style="width: 100%; max-width: 800px; border-radius: 12px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15); transition: all 0.4s ease;">
+          </div>
+        </div>
+        <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568;">
+          <b style="color: #2d3748; font-weight: 600;">Illumination homogenization:</b> 
+          Visualization of rendering results under random lighting and homogenized illumination. Starting from PBR materials and ambient occlusion (AO), we show shaded results under random and canonical lighting, estimated shadows, diffuse BRDF, glossy BRDF, Shaded SLAT, and our lighting-homogenized structured latent (LH-SLAT), as well as relit outputs compared to ground truth (GT). LH-SLAT suppresses shadows and unstable specular highlights while preserving geometry-consistent diffuse information.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <h3 class="title is-4">Forward Rendering</h3>
+      <div class="column is-full">
+        <div style="display: flex; justify-content: center;">
+          <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" style="max-width:100%; border-radius: 16px; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2); transition: all 0.4s ease;">
+        </div>
+      </div>
+      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <b style="color: #2d3748; font-weight: 600;">Visual comparison of Diffusion Renderer with Gbuffer/LH-SLAT for image relighting.</b> In the condition of given real Gbuffer and LH-SLAT, compared to the diffusion-based methods, our method achieves better performance in shadow (upper right), reflection (left), and rendering quality. 
+      </div>
+
+      <!-- <div class="columns is-mobile has-text-centered is-size-7-mobile is-vcentered">
+        <div class="column is-one-third">
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <p>Neural Gaffer 1-view diffusion</p>
+        </div>
+        <div class="column is-one-third">
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <p>Our 16-view diffusion</p>
+        </div>
+        <div class="column is-one-third">
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <video class="video" loop playsinline muted autoplay controls src=""></video>
+          <p>Ground truth</p>
+        </div>
+      </div> -->
+
+  <hr />
+
+
+      <h3 class="title is-4">Recon Rendering</h3>
+      <div class="column is-full">
+        <div style="display: flex; justify-content: center;">
+          <img src="./static/recon/recon.jpg" alt="Recon Rendering" style="max-width:900px; width: 100%; border-radius: 16px; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2); transition: all 0.4s ease;">
+        </div>
+      </div>
+      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+        Given an image with known illumination, our method reconstructs the image and achieves higher fidelity to the original compared with existing approaches.
+      </div>
+
+    <hr />
+
+      <h3 class="title is-4">Relight Rendering</h3>
+      <div class="column is-full">
+        <div style="display: flex; justify-content: center;">
+          <img src="./static/relit/relit.png" alt="Relit Rendering" style="max-width:900px; width: 100%; border-radius: 16px; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2); transition: all 0.4s ease;">
+        </div>
+      </div>
+      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+        Given an image under unknown lighting and a specified target lighting, our method produces more realistic relighting results.
+      </div>
+
+    <hr />
+
+      <h3 class="title is-4">PBR Textured 3D Generation</h3>
+      <div class="column is-full">
+        <div style="display: flex; justify-content: center;">
+          <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" style="max-width:100%; width: 100%; border-radius: 16px; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2); transition: all 0.4s ease;">
+        </div>
+      </div>
+      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+        Comparison of relighting renderings between our neural rendering method and 3D generation methods that can recover PBR material properties. Our method achieves more stable and accurate rendering results.
+      </div>
+
+    <hr />
+
+    <h3 class="title is-4">Material & Shadow Decomposition</h3>
+    <div class="container is-max-desktop">
+      <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
+        <div class="column is-full">
+          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 16px;">
+            <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/decomposition/pbrvideo.mp4"></video>
+          </div>
+        </div>
+      </div>
+      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <b style="color: #2d3748; font-weight: 600;">Visualization of material and shadow decomposition results.</b> Our method decomposes the input image into material and shadow components, providing a well-conditioned intermediate supervision for relighting.
+      </div>
+
+  </section>
+
+  <hr />
+
+  <section class="section" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Main Related Works</h2>
+      <div class="content has-text-justified" style="max-width: 900px; margin: 0 auto;">
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[1]</strong> <a href="https://trellis3d.github.io/" target="_blank">Trellis3D: Structured 3D Latents
+              for Scalable and Versatile 3D Generation</a>
+          </p>
+        </div>
+        
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[2]</strong> <a href="https://dilightnet.github.io/" target="_blank">DiLightNet: Fine-grained Lighting Control for Diffusion-based Image Generation
+            </a>
+          </p>
+        </div>
+
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[3]</strong> <a href="https://neural-gaffer.github.io/" target="_blank">Neural Gaffer: Relighting Any Object via Diffusion
+            </a>
+          </p>
+        </div>
+
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[4]</strong> <a href="https://research.nvidia.com/labs/toronto-ai/DiffusionRenderer/" target="_blank">DiffusionRenderer: Neural Inverse and Forward Rendering with Video Diffusion Models
+            </a>
+          </p>
+        </div>
+
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[5]</strong> <a href="https://heheyas.github.io/MeshGen/" target="_blank">MeshGen: Generating PBR Textured Mesh with Render-Enhanced Auto-Encoder and Generative Data Augmentation
+            </a>
+          </p>
+        </div>
+
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[6]</strong> <a href="https://arxiv.org/pdf/2506.15442" target="_blank">Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material
+            </a>
+          </p>
+        </div>
+
+        <div class="box mb-3" style="margin-bottom: 1rem !important;">
+          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
+            <strong style="color: #667eea; font-weight: 600;">[7]</strong> <a href="https://zheng95z.github.io/publications/rgbx24" target="_blank">RGB↔X: Image Decomposition and Synthesis Using Material- and Lighting-aware Diffusion Models
+            </a>
+          </p>
+        </div>
+        
+
+      </div>
+    </div>
+  </section>
+
+
+<section class="section" id="BibTeX" style="background: linear-gradient(180deg, rgba(102, 126, 234, 0.02) 0%, rgba(255, 255, 255, 0) 100%);">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 has-text-centered">BibTeX</h2>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <pre style="background: #f8f9fa; border-radius: 12px; padding: 2rem; border-left: 4px solid #667eea; box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1); overflow-x: auto;"><code style="font-family: 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 0.95em; line-height: 1.6; color: #2d3748;">
+     </code></pre>
+      </div>
+    </div>
+</section>
+
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website, we just ask that you link back to this page in the footer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
