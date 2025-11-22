@@ -649,8 +649,8 @@ hr::before {
 /* Footer */
 .footer {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-  padding: 3rem 0;
-  margin-top: 5rem;
+  padding: 2rem 0 2rem;
+  margin-top: 1rem;
   position: relative;
   overflow: hidden;
 }
