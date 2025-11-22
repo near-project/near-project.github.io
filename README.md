@@ -1,5 +1,14 @@
 # NeAR: Coupled Neural Asset–Renderer Stack
 
+<div align="center">
+  <video width="100%" autoplay loop muted playsinline>
+    <source src="https://near.github.io/static/teaser/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+**Relightable 3D generative rendering results.** Columns from left to right depict the target illumination, the casually lit input image, Blender-rendered results from Trellis 3D, Hunyuan 3D-2.1 (with PBR materials), our method's estimated multi-view PBR materials back-projected onto the given mesh, our neural rendering results, and ground truth.
+
 Neural asset authoring and neural rendering have emerged as largely disjoint threads: one generates digital assets using neural networks for traditional graphics pipelines, while the other develops neural renderers that map conventional assets to images. However, the joint design of the asset representation and renderer remains largely unexplored. We argue that coupling them can unlock an end-to-end learnable graphics stack with benefits in fidelity, consistency, and efficiency.
 
 ## Overview
