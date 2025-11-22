@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://near-project.github.io/near.github.io/static/logo.svg" alt="NeAR Logo" width="350"/>
+  <img src="https://near-project.github.io/static/logo.svg" alt="NeAR Logo" width="350"/>
 </div>
 
 <div align="center">
