@@ -539,8 +539,8 @@
           </div>
         </div>
         <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568;">
-          <b style="color: #2d3748; font-weight: 600;">Illumination homogenization:</b> 
-          Visualization of rendering results under random lighting and homogenized illumination. Starting from PBR materials and ambient occlusion (AO), we show shaded results under random and canonical lighting, estimated shadows, diffuse BRDF, glossy BRDF, Shaded SLAT, and our lighting-homogenized structured latent (LH-SLAT), as well as relit outputs compared to ground truth (GT). LH-SLAT suppresses shadows and unstable specular highlights while preserving geometry-consistent diffuse information.
+          <b style="color: #2d3748; font-weight: 600;">Visualization of Illumination Homogenization:</b> 
+          We present a breakdown of the rendering pipeline to demonstrate the rationale behind our Illumination Homogenization. Left: Ground-truth PBR intrinsics. Middle: Decomposed shading components (shadows, BRDFs) under random versus normalized lighting. Right: Comparison of latent features. The visualization confirms that unlike the \textit{Shaded-SLAT}, which is corrupted by lighting artifacts, our LH-SLAT successfully decouples lighting from geometry, yielding a stable representation for relighting.
         </div>
       </div>
     </div>
