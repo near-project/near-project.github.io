@@ -197,6 +197,17 @@ html {
   box-shadow: var(--shadow-md);
 }
 
+#arxiv-button {
+  background: linear-gradient(135deg, #b31b1b 0%, #801313 100%) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+#arxiv-button:hover {
+  background: linear-gradient(135deg, #d42020 0%, #9e1717 100%) !important;
+  box-shadow: 0 6px 20px rgba(179, 27, 27, 0.3) !important;
+}
+
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;
@@ -649,8 +660,8 @@ hr::before {
 /* Footer */
 .footer {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-  padding: 2rem 0 2rem;
-  margin-top: 1rem;
+  padding: 12rem 0 4rem;
+  margin-top: 6rem;
   position: relative;
   overflow: hidden;
 }
