@@ -344,11 +344,97 @@
     font-weight: 700;
     color: var(--text-primary);
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .side-toc {
+    position: fixed;
+    top: 120px;
+    left: 24px;
+    width: 220px;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(102, 126, 234, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.12);
+    padding: 1rem 0.9rem;
+  }
+
+  .side-toc-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #667eea;
+    margin-bottom: 0.85rem;
+    padding-left: 0.35rem;
+  }
+
+  .side-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .side-toc li + li {
+    margin-top: 0.35rem;
+  }
+
+  .side-toc a {
+    display: block;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.35;
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    transition: all 0.22s ease;
+  }
+
+  .side-toc a:hover {
+    color: #5a67d8;
+    background: rgba(102, 126, 234, 0.08);
+    transform: translateX(3px);
+  }
+
+  .side-toc a.is-sub {
+    font-size: 0.92rem;
+    color: #718096;
+    padding-left: 1.35rem;
+  }
+
+  @media screen and (max-width: 1400px) {
+    .side-toc {
+      display: none;
+    }
+  }
 </style>
 
 </head>
 
 <body>
+
+  <aside class="side-toc" aria-label="Section navigation">
+    <div class="side-toc-title">Contents</div>
+    <ul>
+      <li><a href="#teaser">Teaser</a></li>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#forward-rendering" class="is-sub">Forward Rendering</a></li>
+      <li><a href="#recon-rendering" class="is-sub">Recon Rendering</a></li>
+      <li><a href="#relight-rendering" class="is-sub">Relight Rendering</a></li>
+      <li><a href="#pbr-generation" class="is-sub">PBR Textured 3D</a></li>
+      <li><a href="#decomposition" class="is-sub">Material & Shadow</a></li>
+      <li><a href="#related-works">Main Related Works</a></li>
+      <li><a href="#BibTeX">BibTeX</a></li>
+    </ul>
+  </aside>
 
   <section class="hero">
     <div class="hero-body">
@@ -456,7 +542,7 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                  <a href="https://huggingface.co/luh0502/NeAR/tree/main" target="_blank" class="external-link button is-normal is-rounded">
                     <span class="icon">
                       <p style="font-size:18px">🤗</p>
                     </span>
@@ -464,7 +550,7 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                  <a href="https://github.com/Luh1124/NeAR" target="_blank" class="external-link button is-normal is-rounded">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -500,7 +586,7 @@
 
   <hr />
 
-  <section class="section" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.03) 100%);">
+  <section class="section" id="abstract" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.03) 100%);">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Abstract</h2>
       <div class="content has-text-justified" style="max-width: 900px; margin: 0 auto;">
@@ -516,7 +602,7 @@
   <hr />
 
 
-  <section class="section">
+  <section class="section" id="overview">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Overview</h2>
 
@@ -546,10 +632,10 @@
 
   <hr />
 
-  <section class="section">
+  <section class="section" id="results">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Results</h2>
-      <h3 class="title is-4">Forward Rendering</h3>
+      <h3 class="title is-4" id="forward-rendering">Forward Rendering</h3>
       <div class="column is-full">
           <div style="display: flex; justify-content: center;">
           <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" style="max-width:100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
@@ -580,7 +666,7 @@
   <hr />
 
 
-      <h3 class="title is-4">Recon Rendering</h3>
+      <h3 class="title is-4" id="recon-rendering">Recon Rendering</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
           <img src="./static/recon/recon.jpg" alt="Recon Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
@@ -592,7 +678,7 @@
 
     <hr />
 
-      <h3 class="title is-4">Relight Rendering</h3>
+      <h3 class="title is-4" id="relight-rendering">Relight Rendering</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
           <img src="./static/relit/relit.png" alt="Relit Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
@@ -604,7 +690,7 @@
 
     <hr />
 
-      <h3 class="title is-4">PBR Textured 3D Generation</h3>
+      <h3 class="title is-4" id="pbr-generation">PBR Textured 3D Generation</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
           <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" style="max-width:100%; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
@@ -616,7 +702,7 @@
 
     <hr />
 
-    <h3 class="title is-4">Material & Shadow Decomposition</h3>
+    <h3 class="title is-4" id="decomposition">Material & Shadow Decomposition</h3>
     <div class="container is-max-desktop">
       <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
         <div class="column is-full">
@@ -633,7 +719,7 @@
 
   <hr />
 
-  <section class="section" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);">
+  <section class="section" id="related-works" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Main Related Works</h2>
       <div class="content has-text-justified" style="max-width: 900px; margin: 0 auto;">
