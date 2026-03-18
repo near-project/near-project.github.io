@@ -45,8 +45,153 @@
   
   /* Enhanced hero section */
   .hero {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    padding: 3rem 1.5rem;
+    background:
+      radial-gradient(circle at 78% 22%, rgba(118, 75, 162, 0.16), transparent 26%),
+      radial-gradient(circle at 88% 42%, rgba(102, 126, 234, 0.18), transparent 24%),
+      linear-gradient(120deg, #f6f9ff 0%, #edf4ff 38%, #f7f3ff 100%);
+    padding: 2.5rem 1.5rem 3.25rem;
+    overflow: hidden;
+  }
+
+  .hero-shell {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.85fr);
+    gap: 2.75rem;
+    align-items: center;
+  }
+
+  .hero-copy {
+    text-align: left;
+    max-width: 760px;
+  }
+
+  .hero-logo {
+    height: 112px;
+    width: auto;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(102, 126, 234, 0.14);
+    color: #55637d;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.08);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.75rem, 5vw, 4.9rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin: 0;
+    color: #172033;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .hero-title-line {
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+    margin: 1rem 0 1.1rem;
+    font-weight: 600;
+    color: #5b6480;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-summary {
+    max-width: 720px;
+    color: #4b5a73;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .hero-decoration {
+    height: 18px;
+    display: block;
+    margin: 0 0 1.6rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 9% 2% auto auto;
+    width: 78%;
+    height: 72%;
+    background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%);
+    filter: blur(18px);
+    pointer-events: none;
+  }
+
+  .hero-media-card {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 30px 80px rgba(66, 83, 128, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .hero-media-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.08);
+    pointer-events: none;
+  }
+
+  .hero-media-card video,
+  .hero-media-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-media-label {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.72);
+    color: white;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   
   .publication-title {
@@ -73,8 +218,13 @@
   
   /* Improved author section */
   .publication-authors {
-    margin: 1.5rem 0;
+    margin: 1.1rem 0;
     line-height: 1.8;
+  }
+
+  .hero-copy .publication-authors {
+    text-align: left;
+    max-width: 760px;
   }
   
   .publication-authors a {
@@ -96,6 +246,10 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+  }
+
+  .hero-copy .publication-links {
+    justify-content: flex-start;
   }
   
   .publication-links .button {
@@ -413,6 +567,54 @@
       display: none;
     }
   }
+
+  @media screen and (max-width: 1023px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-copy,
+    .hero-copy .publication-authors,
+    .hero-copy .publication-links {
+      text-align: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-logo,
+    .hero-decoration {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-visual {
+      min-height: auto;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero {
+      padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .hero-shell {
+      padding: 0;
+    }
+
+    .hero-kicker {
+      font-size: 0.82rem;
+    }
+
+    .hero-summary {
+      font-size: 0.97rem;
+    }
+
+    .publication-links .button {
+      padding: 0.68rem 1.15rem;
+    }
+  }
 </style>
 
 </head>
@@ -438,22 +640,22 @@
 
   <section class="hero">
     <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1" style="margin-bottom: 0;">
-              <img src="./static/logo.svg" alt="NeAR" style="height: 120px; vertical-align: middle;">
+      <div class="hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker">Coupled asset representation and renderer design</div>
+            <img src="./static/logo.svg" alt="NeAR" class="hero-logo">
+            <h1 class="hero-title">
+              <span class="hero-title-line">NeAR</span>
+              <span class="hero-title-line">Coupled Neural Asset–Renderer Stack</span>
             </h1>
-            <h2 class="subtitle is-2 publication-subtitle" style="margin-top: 0; margin-bottom: 1rem; font-weight: 500;">
-              Coupled Neural Asset–Renderer Stack
-            </h2>
-            <div style="margin-bottom: 2rem;">
-              <img src="./static/decoration.svg" alt="decoration" style="height: 20px; display: block; margin: 0 auto;">
-            </div>
-            <div class="is-size-4 publication-authors">
-              <span class="author-block">
-              </span>
-            </div> 
+            <h2 class="hero-subtitle">Relightable 3D generation from casually lit images</h2>
+            <img src="./static/decoration.svg" alt="decoration" class="hero-decoration">
+            <p class="hero-summary">
+              NeAR couples a lighting-homogenized structured latent with a lighting-aware neural renderer,
+              enabling single-image relightable 3D generation, novel-view relighting, material decomposition,
+              and fast environment-light control under HDR illumination.
+            </p>
 
             <div class="is-size-5 publication-authors">
               <span class="author-block">
@@ -502,10 +704,9 @@
                 <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>11,†</sup>
               </span>
             </div>
-  
+
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>*</sup>Equal Contribution</span>
-              <!-- <span class="author-block"><sup>†</sup>Project Leader</span> -->
               <span class="author-block"><sup>†</sup>Corresponding Author</span>
             </div>
             <div class="is-size-5 publication-authors">
@@ -521,45 +722,48 @@
               <span class="author-block"><sup>10</sup>CUHKSZ</span>
               <span class="author-block"><sup>11</sup>AIR, THU</span>
             </div>
-  
 
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="./index.html" id="active-button" class="external-link button is-normal is-rounded">
-                    <span class="icon">
-                      <i class="fas fa-home"></i>
-                    </span>
-                    <span>Main Page</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://www.arxiv.org/abs/2511.18600" target="_blank" class="external-link button is-normal is-rounded" id="arxiv-button">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://huggingface.co/luh0502/NeAR/tree/main" target="_blank" class="external-link button is-normal is-rounded">
-                    <span class="icon">
-                      <p style="font-size:18px">🤗</p>
-                    </span>
-                    <span>Hugging Face</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://github.com/Luh1124/NeAR" target="_blank" class="external-link button is-normal is-rounded">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-              </div>
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="./index.html" id="active-button" class="external-link button is-normal is-rounded">
+                  <span class="icon">
+                    <i class="fas fa-home"></i>
+                  </span>
+                  <span>Main Page</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.arxiv.org/abs/2511.18600" target="_blank" class="external-link button is-normal is-rounded" id="arxiv-button">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/luh0502/NeAR/tree/main" target="_blank" class="external-link button is-normal is-rounded">
+                  <span class="icon">
+                    <p style="font-size:18px">🤗</p>
+                  </span>
+                  <span>Hugging Face</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Luh1124/NeAR" target="_blank" class="external-link button is-normal is-rounded">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
             </div>
+          </div>
 
+          <div class="hero-visual">
+            <div class="hero-media-card">
+              <video class="video" loop playsinline muted autoplay controls src="./static/teaser/video.mp4"></video>
+              <div class="hero-media-label">Teaser video</div>
+            </div>
           </div>
         </div>
       </div>
