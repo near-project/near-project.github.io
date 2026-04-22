@@ -23,719 +23,511 @@
   <script src="./static/js/video_comparison.js"></script>
 
   <style>
-  /* Additional inline styles for enhanced aesthetics */
   :root {
-    --primary-color: #667eea;
-    --secondary-color: #764ba2;
-    --text-primary: #2d3748;
-    --bg-light: #f8f9fa;
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --primary-color: #111827;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+    --bg-light: #f9fafb;
+    --border-color: #e5e7eb;
   }
-  
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-primary);
+    background: #ffffff;
+  }
+
   .content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
   }
-  
+
   .subtitle {
-    color: #718096;
+    color: var(--text-muted);
     font-weight: 400;
   }
-  
-  /* Hero refined toward distill-style academic layout */
+
   .hero {
-    background:
-      linear-gradient(180deg, rgba(241, 245, 252, 0.96) 0%, rgba(238, 243, 250, 0.98) 100%),
-      radial-gradient(circle at 78% 18%, rgba(102, 126, 234, 0.08), transparent 26%);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-    padding: 2.2rem 2rem 1.9rem;
-    overflow: hidden;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 3rem 2rem 2rem;
   }
 
   .hero-shell {
     position: relative;
-    max-width: 1580px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem 0 0.8rem;
+    padding: 0 1rem;
   }
 
-  .hero-grid {
-    display: block;
-  }
+  .hero-grid { display: block; }
 
   .hero-copy {
     text-align: left;
-    max-width: 1280px;
-    padding-top: 0.25rem;
+    max-width: 1200px;
+    padding-top: 0;
   }
 
-  .hero-logo {
-    display: none;
-  }
+  .hero-logo { display: none; }
 
   .hero-kicker {
     display: inline-block;
-    color: #64748b;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.9rem;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
   }
 
   .hero-title {
-    font-size: clamp(3rem, 4.2vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
     margin: 0;
-    color: #0f172a;
-    font-weight: 850;
+    color: var(--text-primary);
+    font-weight: 700;
     max-width: none;
     white-space: nowrap;
   }
 
-  .hero-title-line {
-    display: inline;
-  }
-
-  .hero-title .compact {
-    display: inline;
-    letter-spacing: -0.06em;
-  }
+  .hero-title-line { display: inline; }
+  .hero-title .compact { display: inline; }
 
   .hero-subtitle {
-    font-size: clamp(1.15rem, 1.85vw, 1.55rem);
-    margin: 1rem 0 0.85rem;
-    font-weight: 500;
-    color: #475569;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    margin: 0.75rem 0 0.75rem;
+    font-weight: 400;
+    color: var(--text-secondary);
     letter-spacing: -0.01em;
-    max-width: 56ch;
+    max-width: 60ch;
   }
 
   .hero-summary {
-    max-width: 1180px;
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.82;
-    margin: 0.35rem 0 1.25rem;
+    max-width: 900px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0.5rem 0 1rem;
   }
 
-  .hero-decoration {
-    display: none;
-  }
-
-  .hero-visual {
-    display: none;
-  }
+  .hero-decoration { display: none; }
+  .hero-visual { display: none; }
 
   .hero-toc {
     display: none;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0.9rem 2rem 1.3rem;
+    padding: 1rem;
   }
 
   .hero-toc-card {
     background: transparent;
-    border-top: 1px solid rgba(15, 23, 42, 0.1);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     border-radius: 0;
     box-shadow: none;
-    padding: 1rem 0 0.95rem;
+    padding: 1rem 0;
   }
 
   .hero-toc-title {
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #64748b;
-    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
   }
 
   .hero-toc-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.35rem 1.25rem;
+    gap: 0.25rem 1rem;
   }
 
   .hero-toc-list a {
     display: inline-block;
-    padding: 0.18rem 0;
+    padding: 0.15rem 0;
     text-decoration: none;
-    color: rgba(15, 23, 42, 0.82);
-    font-weight: 500;
-    font-size: 0.95rem;
-    background: transparent;
-    border-radius: 0;
-    transition: color 0.18s ease, transform 0.18s ease;
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: color 0.15s ease;
   }
 
-  .hero-toc-list a:hover {
-    color: #2563eb;
-    transform: translateX(2px);
-  }
-  
+  .hero-toc-list a:hover { color: var(--text-primary); }
+
   .publication-title {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
     letter-spacing: -0.02em;
     margin-bottom: 1rem;
   }
-  
+
   .publication-title u {
     text-decoration: none;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 2px solid var(--text-primary);
     padding-bottom: 2px;
   }
 
-  .publication-subtitle {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* Improved author section */
+  .publication-subtitle { color: var(--text-primary); }
+
   .publication-authors {
-    margin: 0.72rem 0;
-    line-height: 1.55;
+    margin: 0.5rem 0;
+    line-height: 1.5;
   }
 
   .hero-copy .publication-authors {
     text-align: left;
-    max-width: 1140px;
-    font-size: 0.96rem;
-    color: #5c6782;
+    max-width: 1100px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
   }
-  
+
   .publication-authors a {
     color: var(--text-primary);
     text-decoration: none;
-    transition: all 0.2s ease;
     border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
   }
-  
+
   .publication-authors a:hover {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+    border-bottom-color: var(--text-primary);
+    color: var(--text-primary);
   }
 
   .publication-authors .author-block {
     display: inline;
-    margin-right: 0.08rem;
+    margin-right: 0.05rem;
   }
-  
-  /* Enhanced buttons */
+
   .publication-links {
-    margin-top: 1.55rem;
+    margin-top: 1.25rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
 
   .hero-copy .publication-links {
     justify-content: flex-start;
-    max-width: 980px;
-    padding-top: 0.15rem;
+    max-width: 900px;
+    padding-top: 0;
   }
-  
+
   .publication-links .button {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #dbe4ee;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
     color: var(--text-primary);
-    font-weight: 600;
-    padding: 0.72rem 1.35rem;
-    transition: all 0.25s ease;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s ease;
     box-shadow: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
   }
-  
+
   .publication-links .button:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    transform: none;
+    box-shadow: none;
+    background: #f9fafb;
   }
-  
+
   .publication-links .button#active-button {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--text-primary);
     color: white;
-    border-color: transparent;
+    border-color: var(--text-primary);
   }
-  
+
   .publication-links .button#active-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    transform: none;
+    box-shadow: none;
+    background: #374151;
+    border-color: #374151;
   }
 
   .hero-byline {
-    margin-top: 1.1rem;
-    padding: 0.95rem 0 0.9rem;
-    border-top: 1px solid rgba(15, 23, 42, 0.1);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    margin-top: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
 
   .hero-meta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem 1.6rem;
+    gap: 0.5rem 1.25rem;
     align-items: baseline;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
   }
 
   .hero-meta-label {
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #64748b;
-    margin-right: 0.15rem;
+    color: var(--text-muted);
+    margin-right: 0.1rem;
   }
 
   .hero-notes,
   .hero-affiliations {
-    color: #5b6477;
-    font-size: 0.95rem;
-    line-height: 1.75;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
   }
 
   .hero-affiliations {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem 1.1rem;
+    gap: 0.3rem 1rem;
   }
 
   .hero-affiliations span,
-  .hero-notes span {
-    white-space: nowrap;
-  }
+  .hero-notes span { white-space: nowrap; }
 
   .content-shell {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem 2.5rem;
+    padding: 0 1rem 2rem;
     display: block;
   }
 
-  .side-toc {
-    display: none;
-  }
+  .side-toc { display: none; }
 
-  .side-toc-card {
-    border-right: 1px solid rgba(15, 23, 42, 0.1);
-    padding: 0.25rem 1.1rem 0.25rem 0;
-  }
+  .article-main { min-width: 0; }
 
-  .side-toc-title {
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #64748b;
-    margin-bottom: 0.9rem;
-  }
-
-  .side-toc-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .side-toc-list a {
-    color: rgba(15, 23, 42, 0.78);
-    text-decoration: none;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    padding: 0.24rem 0;
-    transition: color 0.18s ease, transform 0.18s ease;
-    border-bottom: none;
-  }
-
-  .side-toc-list a:hover {
-    color: #2563eb;
-    transform: translateX(2px);
-  }
-
-  .side-toc-list a.active-nav-item {
-    color: #2563eb;
-    font-weight: 700;
-  }
-
-  .side-toc-list a.is-sub {
-    padding-left: 0.95rem;
-    font-size: 0.9rem;
-    color: rgba(71, 85, 105, 0.92);
-  }
-
-  .article-main {
-    min-width: 0;
-  }
-  
-  /* Enhanced video containers */
   .video-container {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.1);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background: #fafafa;
   }
-  
-  .video-container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.5s;
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  .video-container:hover::before {
-    opacity: 1;
-  }
-  
+
+  .video-container::before { display: none; }
+  .video-container:hover::before { display: none; }
   .video-container:hover {
-    box-shadow: 0 30px 100px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(102, 126, 234, 0.2);
-    transform: translateY(-6px) scale(1.005);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: none;
   }
-  
-  .video-container video {
-    position: relative;
-    z-index: 0;
-  }
-  
-  /* Improved image containers */
+
+  .video-container video { position: relative; z-index: 0; }
+
   .image-container {
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    transition: all 0.4s ease;
+    border-radius: 8px;
   }
-  
-  /* Better spacing for sections */
-  .section {
-    padding: 4rem 1.5rem;
-  }
-  
+
+  .section { padding: 3rem 1rem; }
+
   #teaser {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);
-    padding: 3rem 1.5rem;
+    background: #ffffff;
+    padding: 2rem 1rem;
   }
-  
-  /* Improved section titles */
+
   .section h2.title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 2rem;
-    letter-spacing: -0.01em;
-  }
-  
-  .section h3.title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-top: 3rem;
     margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
   }
-  
-  /* Enhanced button icons */
+
+  .section h3.title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
   .link-block .icon {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-    color: #475569;
+    margin-right: 0.4rem;
+    color: var(--text-secondary);
   }
 
-  .publication-links .button#active-button .icon {
-    color: #ffffff;
-  }
-
-  .publication-links .button#active-button .fa-home {
-    color: #ffffff;
-  }
+  .publication-links .button#active-button .icon,
+  .publication-links .button#active-button .fa-home { color: #ffffff; }
 
   .publication-links .button#arxiv-button {
-    background: rgba(255, 255, 255, 0.96);
-    border-color: #e5e7eb;
-    color: #111827;
+    background: #ffffff;
+    border-color: var(--border-color);
+    color: var(--text-primary);
   }
 
   .publication-links .button#arxiv-button .icon,
-  .publication-links .button#arxiv-button .ai-arxiv {
-    color: #b31b1b;
-  }
+  .publication-links .button#arxiv-button .ai-arxiv { color: #b31b1b; }
 
   .publication-links .button#arxiv-button:hover {
-    border-color: #d1d5db;
-    color: #111827;
-    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    box-shadow: none;
+    background: #f9fafb;
   }
 
-  .publication-links .button .icon .fa-github {
-    color: #111827;
-  }
+  .publication-links .button#arxiv-button:hover .icon,
+  .publication-links .button#arxiv-button:hover .ai-arxiv { color: #b31b1b; }
 
-  .publication-links .button[href*="huggingface"] .icon {
-    color: #d97706;
-  }
+  .publication-links .button .icon .fa-github { color: var(--text-primary); }
+
+  .publication-links .button[href*="huggingface"] .icon { color: #d97706; }
 
   .publication-links .button[href*="huggingface"] .icon .hf-emoji {
     font-size: 1rem;
     line-height: 1;
-    filter: saturate(1.05);
   }
-  
-  .link-block a:hover .icon {
-    transform: scale(1.1);
-  }
-  
-  /* Smooth fade-in for content */
-  .content {
-    animation: fadeIn 0.8s ease-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Enhanced author links */
-  .publication-authors a {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Glow effect for active sections */
-  .section:target {
-    animation: highlight 1s ease-out;
-  }
-  
-  @keyframes highlight {
-    0% {
-      background-color: transparent;
-    }
-    50% {
-      background-color: rgba(102, 126, 234, 0.05);
-    }
-    100% {
-      background-color: transparent;
-    }
-  }
-  
-  /* Improved image loading */
+
+  .link-block a:hover .icon { transform: none; }
+
+  .content { animation: none; }
+
+  .publication-authors a { position: relative; z-index: 1; }
+
+  .section:target { animation: none; }
+
   img {
-    opacity: 0;
-    animation: imageFadeIn 0.6s ease-out forwards;
-    transition: transform 0.3s ease;
+    opacity: 1;
+    animation: none;
+    transition: none;
   }
-  
-  img:hover {
-    transform: scale(1.02);
-  }
-  
-  @keyframes imageFadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Enhanced abstract box */
+
+  img:hover { transform: none; }
+
   .abstract-box {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
-    border-left: 5px solid var(--primary-color);
-    transition: all 0.3s ease;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
   }
-  
+
   .abstract-box:hover {
-    box-shadow: 0 12px 48px rgba(102, 126, 234, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transform: none;
   }
-  
-  /* Improved results section */
+
   .results-section {
     background: var(--bg-light);
-    border-radius: 24px;
-    padding: 2rem;
-    margin: 2rem 0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
   }
-  
-  /* Better hr styling */
+
   hr {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-    margin: 3rem 0;
+    background: var(--border-color);
+    margin: 2.5rem 0;
   }
-  
-  /* Subtle parallax effect */
+
   @media (prefers-reduced-motion: no-preference) {
-    .hero {
-      transform: translateZ(0);
-    }
+    .hero { transform: none; }
   }
-  
-  /* Table styles */
+
   table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     font-family: 'Inter', sans-serif;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
 
   th, td {
-    padding: 12px 15px;
+    padding: 10px 14px;
     text-align: left;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-color);
   }
 
   th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--text-primary);
     color: white;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  tr:nth-child(even) {
-    background-color: #f8f9fa;
-  }
-
-  tr:hover {
-    background-color: #f1f3f5;
-    transition: background-color 0.2s ease;
-  }
+  tr:nth-child(even) { background-color: #f9fafb; }
+  tr:hover { background-color: #f3f4f6; }
 
   caption {
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
-  .side-toc {
-    display: none;
-  }
-
-  @media screen and (max-width: 1180px) {
-    .side-toc {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 1023px) {
-    .hero-shell,
-    .content-shell {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .hero-copy,
-    .hero-copy .publication-authors,
-    .hero-copy .publication-links,
-    .hero-byline {
-      max-width: none;
-    }
-
-    .hero-title,
-    .hero-subtitle,
-    .hero-summary {
-      max-width: none;
-    }
-
-    .hero-toc {
-      display: block;
-      padding: 0.9rem 1rem 1.1rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .hero {
-      padding: 1.35rem 1rem 2.1rem;
-    }
-
-    .hero-shell,
-    .content-shell,
-    .hero-toc {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-    }
-
-    .hero-title {
-      max-width: none;
-      font-size: clamp(2.4rem, 10vw, 4rem);
-      white-space: normal;
-    }
-
-    .hero-title-line {
-      display: block;
-    }
-
-    .hero-summary {
-      font-size: 0.95rem;
-    }
-
-    .publication-links .button {
-      padding: 0.66rem 1.05rem;
-    }
-
-    .hero-toc-list {
-      gap: 0.55rem;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .hero-toc-list a {
-      font-size: 0.9rem;
-      padding: 0.3rem 0;
-    }
-  }
+  html { scroll-behavior: smooth; }
 
   .footer.footer-compact {
-    padding: 1rem 1.5rem 1.2rem;
+    padding: 1rem;
     background: transparent;
+    border-top: 1px solid var(--border-color);
   }
 
   .footer.footer-compact .content {
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: 0.85rem;
+    line-height: 1.5;
   }
 
   .footer.footer-compact p {
     margin: 0;
-    color: #6b7280;
+    color: var(--text-muted);
   }
+
+  @media screen and (max-width: 1180px) {
+    .side-toc { display: none; }
+  }
+
+  @media screen and (max-width: 1023px) {
+    .hero-shell, .content-shell {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .hero-copy, .hero-copy .publication-authors,
+    .hero-copy .publication-links, .hero-byline {
+      max-width: none;
+    }
+    .hero-title, .hero-subtitle, .hero-summary {
+      max-width: none;
+    }
+    .hero-toc {
+      display: block;
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero { padding: 1.5rem 1rem; }
+    .hero-shell, .content-shell, .hero-toc {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .hero-kicker { font-size: 0.75rem; }
+    .hero-title {
+      max-width: none;
+      font-size: clamp(1.8rem, 8vw, 2.8rem);
+      white-space: normal;
+    }
+    .hero-title-line { display: block; }
+    .hero-summary { font-size: 0.9rem; }
+    .publication-links .button {
+      padding: 0.45rem 0.85rem;
+      font-size: 0.85rem;
+    }
+    .hero-toc-list {
+      gap: 0.4rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-toc-list a {
+      font-size: 0.85rem;
+      padding: 0.2rem 0;
+    }
+  }
+
 </style>
 
 </head>
@@ -749,6 +541,12 @@
           <div class="hero-copy">
             <div class="hero-kicker">Coupled asset representation and renderer design</div>
             <h1 class="hero-title">NeAR: Coupled Neural Asset–Renderer Stack</h1>
+            <div style="margin: 0.75rem 0 0.2rem;">
+              <span style="display: inline-flex; align-items: center; gap: 0.45rem; color: #92400e; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Inter', sans-serif;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#92400e" stroke="none" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                CVPR 2026 Highlight
+              </span>
+            </div>
             <h2 class="hero-subtitle">Relightable 3D generation from casually lit images</h2>
             <p class="hero-summary">
               NeAR couples a lighting-homogenized structured latent with a lighting-aware neural renderer,
@@ -906,7 +704,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
         <div class="column is-full">
-          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 16px;">
+          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 8px;">
             <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/teaser/video.mp4"></video>
           </div>
         </div>
@@ -920,7 +718,7 @@
 
   <hr />
 
-  <section class="section" id="abstract" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.03) 100%);">
+  <section class="section" id="abstract">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Abstract</h2>
       <div class="content has-text-justified" style="max-width: 960px; margin: 0 auto;">
@@ -943,7 +741,7 @@
       <div class="content has-text-justified">
         <div style="text-align: center; margin: 40px 0;">
           <label class="label" style="display: inline-block; max-width: 100%; vertical-align: middle; margin: 0; padding: 0;">
-            <img src="./static/methods/pipeline.jpg" border="0" class="zoom" style="width: 100%; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.12), 0 0 0 1px rgba(102, 126, 234, 0.05); border-radius: 20px; transition: all 0.4s ease;">
+            <img src="./static/methods/pipeline.jpg" border="0" class="zoom" style="width: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-radius: 8px;">
           </label>
         </div>
         <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.9; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
@@ -954,7 +752,7 @@
         </p>
 
           <div style="display: flex; justify-content: center; width: 100%; max-width: 960px; margin: 0 auto;">
-            <img src="./static/methods/motivation.jpg" alt="Visualization of light normalization" style="width: 100%; max-width: 800px; border-radius: 12px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15); transition: all 0.4s ease;">
+            <img src="./static/methods/motivation.jpg" alt="Visualization of light normalization" style="width: 100%; max-width: 800px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
           </div>
         <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568;">
           <b style="color: #2d3748; font-weight: 600;">Visualization of Illumination Homogenization:</b> We present a breakdown of the rendering pipeline to demonstrate the rationale behind our Illumination Homogenization. Left: Ground-truth PBR intrinsics. Middle: Decomposed shading components (shadows, BRDFs) under random versus normalized lighting. Right: Comparison of latent features. The visualization confirms that unlike the \textit{Shaded-SLAT}, which is corrupted by lighting artifacts, our LH-SLAT successfully decouples lighting from geometry, yielding a stable representation for relighting.
@@ -971,7 +769,7 @@
       <h3 class="title is-4" id="forward-rendering">Forward Rendering</h3>
       <div class="column is-full">
           <div style="display: flex; justify-content: center;">
-          <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" style="max-width:100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
+          <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" style="max-width:100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
         </div>
       </div>
       <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
@@ -1002,7 +800,7 @@
       <h3 class="title is-4" id="recon-rendering">Recon Rendering</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
-          <img src="./static/recon/recon.jpg" alt="Recon Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
+          <img src="./static/recon/recon.jpg" alt="Recon Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
         </div>
       </div>
       <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
@@ -1014,7 +812,7 @@
       <h3 class="title is-4" id="relight-rendering">Relight Rendering</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
-          <img src="./static/relit/relit.png" alt="Relit Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
+          <img src="./static/relit/relit.png" alt="Relit Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
         </div>
       </div>
       <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
@@ -1026,7 +824,7 @@
       <h3 class="title is-4" id="pbr-generation">PBR Textured 3D Generation</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
-          <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" style="max-width:100%; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.05); transition: all 0.4s ease;">
+          <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" style="max-width:100%; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
         </div>
       </div>
       <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
@@ -1039,7 +837,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
         <div class="column is-full">
-          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 16px;">
+          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 8px;">
             <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/decomposition/pbrvideo.mp4"></video>
           </div>
         </div>
@@ -1054,55 +852,55 @@
 
   <hr />
 
-  <section class="section" id="related-works" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(102, 126, 234, 0.02) 100%);">
+  <section class="section" id="related-works">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Main Related Works</h2>
       <div class="content has-text-justified" style="max-width: 960px; margin: 0 auto;">
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[1]</strong> <a href="https://trellis3d.github.io/" target="_blank">Trellis3D: Structured 3D Latents
+            <strong style="color: #111827; font-weight: 600;">[1]</strong> <a href="https://trellis3d.github.io/" target="_blank">Trellis3D: Structured 3D Latents
               for Scalable and Versatile 3D Generation</a>
           </p>
         </div>
         
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[2]</strong> <a href="https://dilightnet.github.io/" target="_blank">DiLightNet: Fine-grained Lighting Control for Diffusion-based Image Generation
+            <strong style="color: #111827; font-weight: 600;">[2]</strong> <a href="https://dilightnet.github.io/" target="_blank">DiLightNet: Fine-grained Lighting Control for Diffusion-based Image Generation
             </a>
           </p>
         </div>
 
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[3]</strong> <a href="https://neural-gaffer.github.io/" target="_blank">Neural Gaffer: Relighting Any Object via Diffusion
+            <strong style="color: #111827; font-weight: 600;">[3]</strong> <a href="https://neural-gaffer.github.io/" target="_blank">Neural Gaffer: Relighting Any Object via Diffusion
             </a>
           </p>
         </div>
 
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[4]</strong> <a href="https://research.nvidia.com/labs/toronto-ai/DiffusionRenderer/" target="_blank">DiffusionRenderer: Neural Inverse and Forward Rendering with Video Diffusion Models
+            <strong style="color: #111827; font-weight: 600;">[4]</strong> <a href="https://research.nvidia.com/labs/toronto-ai/DiffusionRenderer/" target="_blank">DiffusionRenderer: Neural Inverse and Forward Rendering with Video Diffusion Models
             </a>
           </p>
         </div>
 
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[5]</strong> <a href="https://heheyas.github.io/MeshGen/" target="_blank">MeshGen: Generating PBR Textured Mesh with Render-Enhanced Auto-Encoder and Generative Data Augmentation
+            <strong style="color: #111827; font-weight: 600;">[5]</strong> <a href="https://heheyas.github.io/MeshGen/" target="_blank">MeshGen: Generating PBR Textured Mesh with Render-Enhanced Auto-Encoder and Generative Data Augmentation
             </a>
           </p>
         </div>
 
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[6]</strong> <a href="https://arxiv.org/pdf/2506.15442" target="_blank">Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material
+            <strong style="color: #111827; font-weight: 600;">[6]</strong> <a href="https://arxiv.org/pdf/2506.15442" target="_blank">Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material
             </a>
           </p>
         </div>
 
         <div class="box mb-3" style="margin-bottom: 1rem !important;">
           <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #667eea; font-weight: 600;">[7]</strong> <a href="https://zheng95z.github.io/publications/rgbx24" target="_blank">RGB↔X: Image Decomposition and Synthesis Using Material- and Lighting-aware Diffusion Models
+            <strong style="color: #111827; font-weight: 600;">[7]</strong> <a href="https://zheng95z.github.io/publications/rgbx24" target="_blank">RGB↔X: Image Decomposition and Synthesis Using Material- and Lighting-aware Diffusion Models
             </a>
           </p>
         </div>
@@ -1113,11 +911,11 @@
   </section>
 
 
-<section class="section" id="BibTeX" style="background: linear-gradient(180deg, rgba(102, 126, 234, 0.02) 0%, rgba(255, 255, 255, 0) 100%);">
+<section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title is-3 has-text-centered">BibTeX</h2>
       <div style="max-width: 1280px; margin: 0 auto;">
-        <pre style="background: #f8f9fa; border-radius: 12px; padding: 2rem; border-left: 4px solid #667eea; box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1); overflow-x: auto;"><code style="font-family: 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 0.95em; line-height: 1.6; color: #2d3748;">@inproceedings{li2025near,
+        <pre style="background: #f9fafb; border-radius: 8px; padding: 1.5rem; border: 1px solid #e5e7eb; overflow-x: auto;"><code style="font-family: 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 0.95em; line-height: 1.6; color: #2d3748;">@inproceedings{li2025near,
   title={NeAR: Coupled Neural Asset-Renderer Stack},
   author={Li, Hong and Ye, Chongjie and Chen, Houyuan and Xiao, Weiqing and Yan, Ziyang and Xiao, Lixing and Chen, Zhaoxi and Xiang, Jianfeng and Xu, Shaocong and Liu, Xuhui and Wang, Yikai and Zhang, Baochang and Han, Xiaoguang and Yang, Jiaolong and Zhao, Hao},
   booktitle={CVPR},
