@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NeAR: Coupled Neural Asset–Renderer Stack</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans&family=Castoro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -24,16 +24,16 @@
 
   <style>
   :root {
-    --primary-color: #111827;
-    --text-primary: #111827;
-    --text-secondary: #4b5563;
-    --text-muted: #6b7280;
-    --bg-light: #f9fafb;
-    --border-color: #e5e7eb;
+    --primary-color: #0f172a;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --border-color: #e2e8f0;
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--text-primary);
     background: #ffffff;
   }
@@ -52,7 +52,7 @@
   .hero {
     background: #ffffff;
     border-bottom: 1px solid var(--border-color);
-    padding: 3rem 2rem 2rem;
+    padding: 2.5rem 2rem 2rem;
   }
 
   .hero-shell {
@@ -114,49 +114,6 @@
 
   .hero-decoration { display: none; }
   .hero-visual { display: none; }
-
-  .hero-toc {
-    display: none;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-
-  .hero-toc-card {
-    background: transparent;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1rem 0;
-  }
-
-  .hero-toc-title {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.6rem;
-  }
-
-  .hero-toc-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.25rem 1rem;
-  }
-
-  .hero-toc-list a {
-    display: inline-block;
-    padding: 0.15rem 0;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-weight: 400;
-    font-size: 0.9rem;
-    transition: color 0.15s ease;
-  }
-
-  .hero-toc-list a:hover { color: var(--text-primary); }
 
   .publication-title {
     color: var(--text-primary);
@@ -330,19 +287,25 @@
   }
 
   .section h2.title {
-    font-size: 2rem;
+    font-size: 1.65rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 1.35rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--border-color);
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .section h3.title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-top: 2rem;
     margin-bottom: 1rem;
+    letter-spacing: -0.015em;
   }
 
   .link-block .icon {
@@ -398,15 +361,13 @@
   img:hover { transform: none; }
 
   .abstract-box {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    background: var(--bg-light);
+    padding: 1.5rem 1.75rem;
+    border-radius: 6px;
     border: 1px solid var(--border-color);
   }
 
   .abstract-box:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     transform: none;
   }
 
@@ -432,7 +393,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
@@ -494,15 +455,11 @@
     .hero-title, .hero-subtitle, .hero-summary {
       max-width: none;
     }
-    .hero-toc {
-      display: block;
-      padding: 0.75rem 1rem;
-    }
   }
 
   @media screen and (max-width: 768px) {
     .hero { padding: 1.5rem 1rem; }
-    .hero-shell, .content-shell, .hero-toc {
+    .hero-shell, .content-shell {
       padding-left: 0;
       padding-right: 0;
     }
@@ -518,14 +475,6 @@
       padding: 0.45rem 0.85rem;
       font-size: 0.85rem;
     }
-    .hero-toc-list {
-      gap: 0.4rem;
-      grid-template-columns: 1fr 1fr;
-    }
-    .hero-toc-list a {
-      font-size: 0.85rem;
-      padding: 0.2rem 0;
-    }
   }
 
 </style>
@@ -533,6 +482,22 @@
 </head>
 
 <body>
+
+  <header class="site-header" role="banner">
+    <nav class="site-nav" aria-label="Section navigation">
+      <a class="site-brand" href="#">NeAR</a>
+      <div class="site-nav-links">
+        <a href="#teaser">Teaser</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#overview">Overview</a>
+        <a href="#results">Results</a>
+        <a href="#forward-rendering">Forward</a>
+        <a href="#relight-rendering">Relight</a>
+        <a href="#related-works">Related</a>
+        <a href="#BibTeX">Citation</a>
+      </div>
+    </nav>
+  </header>
 
   <section class="hero">
     <div class="hero-body">
@@ -542,8 +507,8 @@
             <div class="hero-kicker">Coupled asset representation and renderer design</div>
             <h1 class="hero-title">NeAR: Coupled Neural Asset–Renderer Stack</h1>
             <div style="margin: 0.75rem 0 0.2rem;">
-              <span style="display: inline-flex; align-items: center; gap: 0.45rem; color: #92400e; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Inter', sans-serif;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#92400e" stroke="none" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span style="display: inline-flex; align-items: center; gap: 0.45rem; color: #334155; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'IBM Plex Sans', sans-serif;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#64748b" stroke="none" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 CVPR 2026 Highlight
               </span>
             </div>
@@ -673,25 +638,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hero-toc" aria-label="Section navigation">
-    <div class="hero-toc-card">
-      <div class="hero-toc-title">Contents</div>
-      <div class="hero-toc-list">
-        <a href="#teaser">Teaser</a>
-        <a href="#abstract">Abstract</a>
-        <a href="#overview">Overview</a>
-        <a href="#results">Results</a>
-        <a href="#forward-rendering">Forward Rendering</a>
-        <a href="#recon-rendering">Recon Rendering</a>
-        <a href="#relight-rendering">Relight Rendering</a>
-        <a href="#pbr-generation">PBR Textured 3D</a>
-        <a href="#decomposition">Material & Shadow</a>
-        <a href="#related-works">Main Related Works</a>
-        <a href="#BibTeX">BibTeX</a>
       </div>
     </div>
   </section>
@@ -856,56 +802,15 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Main Related Works</h2>
       <div class="content has-text-justified" style="max-width: 960px; margin: 0 auto;">
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[1]</strong> <a href="https://trellis3d.github.io/" target="_blank">Trellis3D: Structured 3D Latents
-              for Scalable and Versatile 3D Generation</a>
-          </p>
-        </div>
-        
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[2]</strong> <a href="https://dilightnet.github.io/" target="_blank">DiLightNet: Fine-grained Lighting Control for Diffusion-based Image Generation
-            </a>
-          </p>
-        </div>
-
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[3]</strong> <a href="https://neural-gaffer.github.io/" target="_blank">Neural Gaffer: Relighting Any Object via Diffusion
-            </a>
-          </p>
-        </div>
-
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[4]</strong> <a href="https://research.nvidia.com/labs/toronto-ai/DiffusionRenderer/" target="_blank">DiffusionRenderer: Neural Inverse and Forward Rendering with Video Diffusion Models
-            </a>
-          </p>
-        </div>
-
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[5]</strong> <a href="https://heheyas.github.io/MeshGen/" target="_blank">MeshGen: Generating PBR Textured Mesh with Render-Enhanced Auto-Encoder and Generative Data Augmentation
-            </a>
-          </p>
-        </div>
-
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[6]</strong> <a href="https://arxiv.org/pdf/2506.15442" target="_blank">Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material
-            </a>
-          </p>
-        </div>
-
-        <div class="box mb-3" style="margin-bottom: 1rem !important;">
-          <p class="mb-1" style="margin-bottom: 0.5rem !important; font-size: 1.05rem;">
-            <strong style="color: #111827; font-weight: 600;">[7]</strong> <a href="https://zheng95z.github.io/publications/rgbx24" target="_blank">RGB↔X: Image Decomposition and Synthesis Using Material- and Lighting-aware Diffusion Models
-            </a>
-          </p>
-        </div>
-        
-
+        <ul class="relwork-list">
+          <li><strong>[1]</strong> <a href="https://trellis3d.github.io/" target="_blank" rel="noopener">Trellis3D: Structured 3D Latents for Scalable and Versatile 3D Generation</a></li>
+          <li><strong>[2]</strong> <a href="https://dilightnet.github.io/" target="_blank" rel="noopener">DiLightNet: Fine-grained Lighting Control for Diffusion-based Image Generation</a></li>
+          <li><strong>[3]</strong> <a href="https://neural-gaffer.github.io/" target="_blank" rel="noopener">Neural Gaffer: Relighting Any Object via Diffusion</a></li>
+          <li><strong>[4]</strong> <a href="https://research.nvidia.com/labs/toronto-ai/DiffusionRenderer/" target="_blank" rel="noopener">DiffusionRenderer: Neural Inverse and Forward Rendering with Video Diffusion Models</a></li>
+          <li><strong>[5]</strong> <a href="https://heheyas.github.io/MeshGen/" target="_blank" rel="noopener">MeshGen: Generating PBR Textured Mesh with Render-Enhanced Auto-Encoder and Generative Data Augmentation</a></li>
+          <li><strong>[6]</strong> <a href="https://arxiv.org/pdf/2506.15442" target="_blank" rel="noopener">Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material</a></li>
+          <li><strong>[7]</strong> <a href="https://zheng95z.github.io/publications/rgbx24" target="_blank" rel="noopener">RGB↔X: Image Decomposition and Synthesis Using Material- and Lighting-aware Diffusion Models</a></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -913,9 +818,9 @@
 
 <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title is-3 has-text-centered">BibTeX</h2>
+      <h2 class="title is-3 has-text-centered">Citation</h2>
       <div style="max-width: 1280px; margin: 0 auto;">
-        <pre style="background: #f9fafb; border-radius: 8px; padding: 1.5rem; border: 1px solid #e5e7eb; overflow-x: auto;"><code style="font-family: 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 0.95em; line-height: 1.6; color: #2d3748;">@inproceedings{li2025near,
+        <pre class="site-bibtex"><code>@inproceedings{li2025near,
   title={NeAR: Coupled Neural Asset-Renderer Stack},
   author={Li, Hong and Ye, Chongjie and Chen, Houyuan and Xiao, Weiqing and Yan, Ziyang and Xiao, Lixing and Chen, Zhaoxi and Xiang, Jianfeng and Xu, Shaocong and Liu, Xuhui and Wang, Yikai and Zhang, Baochang and Han, Xiaoguang and Yang, Jiaolong and Zhao, Hao},
   booktitle={CVPR},
