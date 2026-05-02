@@ -155,6 +155,26 @@
     margin-bottom: 0.75rem;
   }
 
+  .hero-highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #b91c1c;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .hero-highlight-badge svg {
+    fill: #dc2626;
+    flex-shrink: 0;
+  }
+
   .hero-title {
     font-size: clamp(2.2rem, 3.5vw, 3.5rem);
     line-height: 1.1;
@@ -204,19 +224,20 @@
   .publication-subtitle { color: var(--text-primary); }
 
   .publication-authors {
-    margin: 0.5rem 0;
-    line-height: 1.5;
+    margin: 0;
+    line-height: 1.55;
   }
 
   .hero-copy .publication-authors {
     text-align: left;
     max-width: 1100px;
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     color: var(--text-secondary);
+    letter-spacing: 0;
   }
 
   .publication-authors a {
-    color: var(--text-primary);
+    color: #334155;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s ease;
@@ -229,7 +250,8 @@
 
   .publication-authors .author-block {
     display: inline;
-    margin-right: 0.05rem;
+    margin-right: 0.1rem;
+    white-space: nowrap;
   }
 
   .publication-links {
@@ -281,7 +303,7 @@
 
   .hero-byline {
     margin-top: 0.75rem;
-    padding: 0.75rem 0;
+    padding: 0.65rem 0;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
   }
@@ -306,8 +328,8 @@
   .hero-notes,
   .hero-affiliations {
     color: var(--text-secondary);
-    font-size: 0.88rem;
-    line-height: 1.6;
+    font-size: 0.78rem;
+    line-height: 1.5;
   }
 
   .hero-affiliations {
@@ -351,6 +373,39 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+  }
+
+  .media-frame {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .result-block {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .result-block:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .result-copy {
+    font-size: 1.05em;
+    margin-top: 1.5rem;
+    line-height: 1.8;
+    color: #4a5568;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .result-copy.compact {
+    font-size: 0.98em;
+    margin-top: 1.1rem;
+    line-height: 1.75;
   }
 
   .section { padding: 3rem 1rem; }
@@ -565,8 +620,6 @@
         <a href="#abstract">Abstract</a>
         <a href="#overview">Overview</a>
         <a href="#results">Results</a>
-        <a href="#forward-rendering">Forward</a>
-        <a href="#relight-rendering">Relight</a>
         <a href="#related-works">Related</a>
         <a href="#BibTeX">Citation</a>
       </div>
@@ -580,9 +633,9 @@
           <div class="hero-copy">
             <div class="hero-kicker">Coupled asset representation and renderer design</div>
             <h1 class="hero-title">NeAR: Coupled Neural Asset–Renderer Stack</h1>
-            <div style="margin: 0.75rem 0 0.2rem;">
-              <span style="display: inline-flex; align-items: center; gap: 0.45rem; color: #334155; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'IBM Plex Sans', sans-serif;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#64748b" stroke="none" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <div style="margin: 0.85rem 0 0.25rem;">
+              <span class="hero-highlight-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 CVPR 2026 Highlight
               </span>
             </div>
@@ -594,7 +647,7 @@
             </p>
 
             <div class="hero-byline">
-              <div class="is-size-5 publication-authors">
+              <div class="publication-authors">
                 <span class="author-block">
                   <a href="https://luh1124.github.io/hongli.github.io/" target="_blank">Hong Li</a><sup>1,2,*</sup>,
                 </span>
@@ -605,40 +658,40 @@
                   <a href="https://github.com/houyuanchen111" target="_blank">Houyuan Chen</a><sup>4</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com.hk/citations?user=v0iwkScAAAAJ&hl=en&oi=sra" target="_blank">Weiqing Xiao</a><sup>4</sup>,
+                  <a href="https://scholar.google.com.hk/citations?user=v0iwkScAAAAJ&hl=en&oi=sra" target="_blank">Weiqing Xiao</a><sup>5</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=YDpHqP0AAAAJ&hl=en" target="_blank">Ziyang Yan</a><sup>5</sup>,
+                  <a href="https://scholar.google.com/citations?user=YDpHqP0AAAAJ&hl=en" target="_blank">Ziyang Yan</a><sup>6</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=TLN6QGMAAAAJ&hl=en" target="_blank">Lixing Xiao</a><sup>6</sup>,
+                  <a href="https://scholar.google.com/citations?user=TLN6QGMAAAAJ&hl=en" target="_blank">Lixing Xiao</a><sup>7</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://frozenburning.github.io/" target="_blank">Zhaoxi Chen</a><sup>7</sup>,
+                  <a href="https://frozenburning.github.io/" target="_blank">Zhaoxi Chen</a><sup>8</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://jeffreyxiang.github.io/" target="_blank">Jianfeng Xiang</a><sup>8</sup>,
+                  <a href="https://jeffreyxiang.github.io/" target="_blank">Jianfeng Xiang</a><sup>9</sup>,
                 </span>
                 <span class="author-block">
                   <a href="https://daniellli.github.io/" target="_blank">Shaocong Xu</a><sup>1</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=d4Dg1J4AAAAJ&hl=en" target="_blank">Xuhui Liu</a><sup>2</sup>,
+                  <a href="https://scholar.google.com/citations?user=d4Dg1J4AAAAJ&hl=en" target="_blank">Xuhui Liu</a><sup>1</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://yikaiw.github.io/" target="_blank">Yikai Wang</a><sup>9</sup>,
+                  <a href="https://yikaiw.github.io/" target="_blank">Yikai Wang</a><sup>10</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=ImJz6MsAAAAJ&hl=en" target="_blank">Baochang Zhang</a><sup>2,†</sup>,
+                  <a href="https://scholar.google.com/citations?user=ImJz6MsAAAAJ&hl=en" target="_blank">Baochang Zhang</a><sup>1,†</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://gaplab.cuhk.edu.cn/pages/people" target="_blank">Xiaoguang Han</a><sup>10</sup>,
+                  <a href="https://gaplab.cuhk.edu.cn/pages/people" target="_blank">Xiaoguang Han</a><sup>11</sup>,
                 </span>
                 <span class="author-block">
                   <a href="" target="_blank">Jiaolong Yang</a>,
                 </span>
                 <span class="author-block">
-                  <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>11,†</sup>
+                  <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>12,†</sup>
                 </span>
               </div>
 
@@ -653,17 +706,18 @@
               <div class="hero-meta-row">
                 <div class="hero-meta-label">Affiliations</div>
                 <div class="hero-affiliations">
-                  <span><sup>1</sup> BAAI</span>
-                  <span><sup>2</sup> BUAA</span>
+                  <span><sup>1</sup> BUAA</span>
+                  <span><sup>2</sup> BAAI</span>
                   <span><sup>3</sup> FNii, CUHKSZ</span>
-                  <span><sup>4</sup> NJU</span>
-                  <span><sup>5</sup> UniTn</span>
-                  <span><sup>6</sup> ZJU</span>
-                  <span><sup>7</sup> NTU</span>
-                  <span><sup>8</sup> THU</span>
-                  <span><sup>9</sup> BNU</span>
-                  <span><sup>10</sup> CUHKSZ</span>
-                  <span><sup>11</sup> AIR, THU</span>
+                  <span><sup>4</sup> HKUST</span>
+                  <span><sup>5</sup> NJU</span>
+                  <span><sup>6</sup> UniTn</span>
+                  <span><sup>7</sup> ZJU</span>
+                  <span><sup>8</sup> NTU</span>
+                  <span><sup>9</sup> THU</span>
+                  <span><sup>10</sup> BNU</span>
+                  <span><sup>11</sup> CUHKSZ</span>
+                  <span><sup>12</sup> AIR, THU</span>
                 </div>
               </div>
             </div>
@@ -718,11 +772,22 @@
 
   <div class="content-shell">
     <main class="article-main">
-      <hr />
 
   <section class="section" id="teaser">
     <div class="container is-max-desktop">
       <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
+        <div class="column is-full">
+          <div class="image-container" style="position: relative; overflow: hidden; border-radius: 8px;">
+            <img src="./static/teaser/arch_0502.png" alt="NeAR teaser overview" class="media-frame" style="display: block; width: 100%;">
+          </div>
+        </div>
+      </div>
+      <p class="subtitle is-6 has-text-justified" style="max-width: 960px; margin: 2rem auto 0; line-height: 1.8; color: #4a5568; font-size: 1.05rem;">
+      <strong style="color: #2d3748; font-weight: 600;">Comparison of NeAR and decoupled paradigms.</strong>
+      Existing 2D intrinsic decomposition methods lack explicit 3D awareness, while 3D generation pipelines decouple asset authoring from rendering and rely on ill-posed PBR decomposition. In contrast, NeAR employs a coupled neural asset-renderer stack: by using the LH-SLAT representation, it supports photorealistic relighting, novel-view rendering, and material-aware neural rendering in a unified framework.
+      </p>
+
+      <div class="columns is-mobile is-centered" style="margin-top: 2.5rem; margin-bottom: 2rem;">
         <div class="column is-full">
           <div class="video-container" style="position: relative; overflow: hidden; border-radius: 8px;">
             <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/teaser/video.mp4"></video>
@@ -730,8 +795,8 @@
         </div>
       </div>
       <p class="subtitle is-6 has-text-justified" style="max-width: 960px; margin: 2rem auto 0; line-height: 1.8; color: #4a5568; font-size: 1.05rem;">
-      <strong style="color: #2d3748; font-weight: 600;">Relightable 3D generative rendering results.</strong> 
-      Columns from left to right depict the target illumination, the casually lit input image, Blender-rendered results from Trellis 3D, Hunyuan 3D-2.1 (with PBR materials), our method's estimated multi-view PBR materials back-projected onto the given mesh, our neural rendering results, and ground truth. The final two columns keep illumination fixed while varying the camera pose. Compared with prior approaches, our method yields more faithful relighting, particularly in preserving rendering accuracy and enforcing cross-view illumination consistency.
+      <strong style="color: #2d3748; font-weight: 600;">Relightable 3D generative rendering results.</strong>
+      The video demonstrates single-image relightable 3D generation under target illumination and changing camera poses. Compared with prior decoupled pipelines, NeAR produces more faithful relighting, preserves lighting-material interactions more accurately, and enforces stronger cross-view illumination consistency.
       </p>
     </div>
   </section>
@@ -786,73 +851,74 @@
   <section class="section" id="results">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Results</h2>
-      <h3 class="title is-4" id="forward-rendering">Forward Rendering</h3>
-      <div class="column is-full">
+      <div class="result-block">
+        <h3 class="title is-4" id="forward-rendering">Forward Rendering</h3>
+        <div class="column is-full">
+            <div style="display: flex; justify-content: center;">
+            <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" class="media-frame" style="max-width:100%;">
+          </div>
+        </div>
+        <div class="result-copy">
+          <b style="color: #2d3748; font-weight: 600;">Visual comparison of Diffusion Renderer with Gbuffer/LH-SLAT for image relighting.</b> In the condition of given real Gbuffer and LH-SLAT, compared to the diffusion-based methods, our method achieves better performance in shadow (upper right), reflection (left), and rendering quality.
+        </div>
+
+        <!-- <div class="columns is-mobile has-text-centered is-size-7-mobile is-vcentered">
+          <div class="column is-one-third">
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <p>Neural Gaffer 1-view diffusion</p>
+          </div>
+          <div class="column is-one-third">
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <p>Our 16-view diffusion</p>
+          </div>
+          <div class="column is-one-third">
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <video class="video" loop playsinline muted autoplay controls src=""></video>
+            <p>Ground truth</p>
+          </div>
+        </div> -->
+      </div>
+
+
+      <div class="result-block">
+      <div class="columns is-variable is-5 is-desktop" style="align-items: stretch;">
+        <div class="column" style="flex: 0 0 48%;">
+          <h3 class="title is-4" id="recon-rendering">Recon Rendering</h3>
           <div style="display: flex; justify-content: center;">
-          <img src="./static/forward/forward.jpg" alt="Forward Rendering Visualization" style="max-width:100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <img src="./static/recon/recon.jpg" alt="Recon Rendering" class="media-frame" style="width: 100%;">
+          </div>
+          <div class="result-copy compact">
+            Given an image with known illumination, our method reconstructs the image and achieves higher fidelity to the original compared with existing approaches.
+          </div>
+        </div>
+
+        <div class="column" style="flex: 0 0 52%;">
+          <h3 class="title is-4" id="relight-rendering">Relight Rendering</h3>
+          <div style="display: flex; justify-content: center;">
+            <img src="./static/relit/relit.png" alt="Relit Rendering" class="media-frame" style="width: 100%;">
+          </div>
+          <div class="result-copy compact">
+            Given an image under unknown lighting and a specified target lighting, our method produces more realistic relighting results.
+          </div>
         </div>
       </div>
-      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
-        <b style="color: #2d3748; font-weight: 600;">Visual comparison of Diffusion Renderer with Gbuffer/LH-SLAT for image relighting.</b> In the condition of given real Gbuffer and LH-SLAT, compared to the diffusion-based methods, our method achieves better performance in shadow (upper right), reflection (left), and rendering quality. 
       </div>
 
-      <!-- <div class="columns is-mobile has-text-centered is-size-7-mobile is-vcentered">
-        <div class="column is-one-third">
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <p>Neural Gaffer 1-view diffusion</p>
-        </div>
-        <div class="column is-one-third">
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <p>Our 16-view diffusion</p>
-        </div>
-        <div class="column is-one-third">
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <video class="video" loop playsinline muted autoplay controls src=""></video>
-          <p>Ground truth</p>
-        </div>
-      </div> -->
-
-  <hr />
-
-
-      <h3 class="title is-4" id="recon-rendering">Recon Rendering</h3>
-      <div class="column is-full">
-        <div style="display: flex; justify-content: center;">
-          <img src="./static/recon/recon.jpg" alt="Recon Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        </div>
-      </div>
-      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
-        Given an image with known illumination, our method reconstructs the image and achieves higher fidelity to the original compared with existing approaches.
-      </div>
-
-    <hr />
-
-      <h3 class="title is-4" id="relight-rendering">Relight Rendering</h3>
-      <div class="column is-full">
-        <div style="display: flex; justify-content: center;">
-          <img src="./static/relit/relit.png" alt="Relit Rendering" style="max-width:900px; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        </div>
-      </div>
-      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
-        Given an image under unknown lighting and a specified target lighting, our method produces more realistic relighting results.
-      </div>
-
-    <hr />
-
+      <div class="result-block">
       <h3 class="title is-4" id="pbr-generation">PBR Textured 3D Generation</h3>
       <div class="column is-full">
         <div style="display: flex; justify-content: center;">
-          <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" style="max-width:100%; width: 100%; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <img src="./static/novel/novelview.png" alt="PBR Textured 3D Generation" class="media-frame" style="max-width:100%; width: 100%;">
         </div>
       </div>
-      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
+      <div class="result-copy">
         Comparison of relighting renderings between our neural rendering method and 3D generation methods that can recover PBR material properties. Our method achieves more stable and accurate rendering results.
       </div>
+      </div>
 
-    <hr />
-
+    <div class="result-block">
     <h3 class="title is-4" id="decomposition">Material & Shadow Decomposition</h3>
     <div class="container is-max-desktop">
       <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
@@ -862,9 +928,26 @@
           </div>
         </div>
       </div>
-      <div style="font-size: 1.05em; margin-top: 1.5rem; line-height: 1.8; color: #4a5568; max-width: 960px; margin-left: auto; margin-right: auto;">
+      <div class="result-copy">
         <b style="color: #2d3748; font-weight: 600;">Visualization of material and shadow decomposition results.</b> Our method decomposes the input image into material and shadow components, providing a well-conditioned intermediate supervision for relighting.
       </div>
+    </div>
+    </div>
+
+    <div class="result-block">
+    <h3 class="title is-4" id="texture-style-transfer">Texture Style Transfer</h3>
+    <div class="container is-max-desktop">
+      <div class="columns is-mobile is-centered" style="margin-bottom: 2rem;">
+        <div class="column is-full">
+          <div class="video-container" style="position: relative; overflow: hidden; border-radius: 8px;">
+            <video class="video" style="display: block; width: 100%;" loop playsinline muted autoplay controls src="./static/style/style.mp4"></video>
+          </div>
+        </div>
+      </div>
+      <div class="result-copy">
+        <b style="color: #2d3748; font-weight: 600;">Texture style transfer with relightable neural rendering.</b> Given geometry and a target-style image as guidance, this result will show how NeAR generates semantically consistent stylized textures while preserving photorealistic relighting behavior.
+      </div>
+    </div>
     </div>
   </div>
 
